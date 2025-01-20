@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: ./back-end
+    container_name: tasks_api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./back-end:/app
+    networks:
+      - tasks_network
+  db:
+    image: postgres
+    container_name: tasks_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgres/data
+    networks:
+      - tasks_network
+
+volumes:
+  db_data:
+
+networks:
+  tasks_network:
+    driver: bridge
