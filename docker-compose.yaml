@@ -21,6 +21,15 @@ services:
     networks:
       - tasks_network
 
+  front-end-ngx:
+    build: ./front-end
+    ports:
+      - "443:443"
+    container_name: front-end-ngx
+    volumes:
+      - ./front-end/dist/front-end:/usr/share/nginx/html
+    networks:
+      - tasks_network
 volumes:
   db_data:
 
