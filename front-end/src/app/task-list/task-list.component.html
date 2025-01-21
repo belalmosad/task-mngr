@@ -4,12 +4,12 @@
         Add new task
     </button>
 </div>
-<div *ngIf="data.length" >
+<div *ngIf="data?.length" >
     <div *ngFor="let item of data" class="task-items">
         <app-task-item [taskItem]="item" (deleteTaskEvent)="onDeleteTask($event)"></app-task-item>
     </div>
 </div>
-<div *ngIf="!data.length" class="no-tasks">
+<div *ngIf="!data?.length" class="no-tasks">
     <div>No tasks yet!</div>
 </div>
 
