@@ -1,0 +1,35 @@
+.task-item {
+    display: block;
+    max-width: 45%;
+    padding: 5px;
+    margin: 2%;
+}
+
+.done-chip {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+.progress-chip {
+    background-color: #2196F3 !important;
+    color: white !important;
+}
+
+.mat-mdc-card-content>p {
+    font-size: x-large;
+}
+
+.task-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.task-head mat-icon {
+    color: #bb2124;
+}
+
+.task-head mat-icon:hover {
+    cursor: pointer;
+}
