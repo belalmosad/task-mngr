@@ -1,0 +1,19 @@
+.add-task {
+    margin: 3%;
+}
+
+.mat-mdc-fab {
+    background-color: transparent;
+    border: 1px solid #2196F3;
+    color: white;
+}
+
+.no-tasks {
+    width: 50%;
+}
+
+.no-tasks > div {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-size: xx-large;
+}
