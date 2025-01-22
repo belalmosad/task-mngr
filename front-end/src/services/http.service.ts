@@ -19,4 +19,9 @@ export class HttpService {
   deleteTask(taskId: any) {
     return this.http.delete(`${this.baseRoute}/task/${taskId}`);
   }
+  updateTask(taskItem: Task) {
+    return this.http.patch(`${this.baseRoute}/task/${taskItem.id}`,
+      { "name": taskItem.name, "status": taskItem.status }
+    );
+  }
 }
