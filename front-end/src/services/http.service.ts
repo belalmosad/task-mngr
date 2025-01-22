@@ -27,4 +27,7 @@ export class HttpService {
   getTasksCount() {
     return this.http.get(`${this.baseRoute}/tasks/count`)
   }
+  exportTasks() {
+    return this.http.get(`${this.baseRoute}/tasks/export`, {responseType: 'blob'})
+  }
 }

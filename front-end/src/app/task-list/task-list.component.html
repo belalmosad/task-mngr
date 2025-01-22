@@ -3,6 +3,17 @@
         <mat-icon>add</mat-icon>
         Add new task
     </button>
+    <button mat-fab extended (click)="exportToCSV()" [disabled]="showSpinner">
+        <mat-icon>share</mat-icon>
+        Export to CSV
+    </button>
+    <a *ngIf="downloadReady" [href]="downlodUrl" download="exported_tasks.csv">
+        <mat-icon>download</mat-icon>
+        download exported tasks
+    </a>
+    <a *ngIf="showSpinner" style="display: inline-block;">
+        <mat-spinner [diameter]="30"></mat-spinner>
+    </a>
 </div>
 <div *ngIf="data?.length">
     <div *ngFor="let item of data" class="task-items">
