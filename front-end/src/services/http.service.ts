@@ -10,8 +10,8 @@ export class HttpService {
   baseRoute = '/service'
   constructor(private http: HttpClient) { }
 
-  getTasks(): Observable<Object> {
-    return this.http.get(`${this.baseRoute}/tasks`);
+  getTasks(offset: number): Observable<Object> {
+    return this.http.get(`${this.baseRoute}/tasks?offset=${offset}`);
   }
   addTask(data: any): Observable<object> {
     return this.http.post(`${this.baseRoute}/tasks`, data);
@@ -23,5 +23,8 @@ export class HttpService {
     return this.http.patch(`${this.baseRoute}/task/${taskItem.id}`,
       { "name": taskItem.name, "status": taskItem.status }
     );
+  }
+  getTasksCount() {
+    return this.http.get(`${this.baseRoute}/tasks/count`)
   }
 }

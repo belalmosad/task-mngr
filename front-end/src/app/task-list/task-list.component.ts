@@ -6,6 +6,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-task-list',
@@ -16,6 +17,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     MatButtonModule, 
     MatIconModule,
     RouterOutlet,
+    MatPaginatorModule,
     RouterLink,
     NgIf
   ],
@@ -24,17 +26,32 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class TaskListComponent  {
   data: any;
+  tasksCount: any;
+  currentOffset = 0;
   constructor(private service: HttpService) {}
 
   ngOnInit(): void {
-    this.service.getTasks().subscribe((data) => {
+    this.service.getTasks(this.currentOffset).subscribe((data) => {
       this.data = data;
     });
+    this.service.getTasksCount().subscribe((data: any) => {
+      this.tasksCount = data.count;
+    })
   }
 
   onDeleteTask(taskId: any): void {
-    this.data = this.data.filter((item: any) => {
-      return item.id != taskId
-    })
+    this.service.getTasks(this.currentOffset).subscribe((data) => {
+      this.data = data;
+    });
+    this.tasksCount = this.tasksCount - 1;
+  }
+
+  onPageChange(event: any) {
+    const pageIndex = event.pageIndex;
+    const offSetBase = 5;
+    this.currentOffset = (pageIndex * offSetBase)
+    this.service.getTasks(this.currentOffset).subscribe((data) => {
+      this.data = data;
+    });
   }
 }
