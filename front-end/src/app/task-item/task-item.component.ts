@@ -5,7 +5,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
-import { HttpService } from '../http.service';
+import { HttpService } from '../../services/http.service';
+import { Router } from '@angular/router';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-item',
@@ -26,13 +28,20 @@ export class TaskItemComponent {
   @Input() taskItem!: Task;
   @Output() deleteTaskEvent = new EventEmitter<number>();
   constructor(
-    private service: HttpService
+    private httpService: HttpService,
+    private router: Router,
+    private taskService: TaskService
   ) {}
 
   deleteTask(taskId: any) {
-    this.service.deleteTask(taskId).subscribe(dat => {
+    this.httpService.deleteTask(taskId).subscribe(dat => {
       this.deleteTaskEvent.emit(taskId)
     });
+  }
+
+  updateTask(taskItem: any) {
+    this.taskService.setTask(taskItem);
+    this.router.navigate(['update-task']);
   }
 
 }
