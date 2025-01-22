@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpService } from '../http.service';
+import { HttpService } from '../../services/http.service';
 import { NgFor, NgIf } from '@angular/common';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import {MatGridListModule} from '@angular/material/grid-list';
