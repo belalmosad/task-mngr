@@ -15,3 +15,6 @@ class CreateTaskSchema(Schema):
 class UpdateTaskSchema(Schema):
     name = fields.Str()
     status=fields.Str()
+    
+class QueryArgsSchema(Schema):
+    offset = fields.Number()

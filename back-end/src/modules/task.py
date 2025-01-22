@@ -1,6 +1,6 @@
 from flask_smorest import Blueprint, abort
 from flask.views import MethodView
-from src.schemas.task import CreateTaskSchema, UpdateTaskSchema, GetTaskSchema
+from src.schemas.task import CreateTaskSchema, UpdateTaskSchema, GetTaskSchema, QueryArgsSchema
 from src.db.db import db
 from src.db.models.task import TaskModel
 from sqlalchemy.exc import SQLAlchemyError
@@ -12,9 +12,11 @@ bp = Blueprint('tasks', __name__, description="CRUD operations on tasks")
 @bp.route('/tasks')
 class Task(MethodView):
     @bp.response(200, GetTaskSchema(many=True))
-    def get(self):
+    @bp.arguments(QueryArgsSchema, location="query")
+    def get(self, data):
         try:
-            tasks = db.session.query(TaskModel).all()
+            offset = int(data["offset"])
+            tasks = db.session.query(TaskModel).offset(offset).limit(5).all()
             return tasks
         except SQLAlchemyError:
             abort(500, message="Error in loading tasks")
