@@ -5,6 +5,7 @@ from src.db.db import db
 import os
 
 def create_app():
+    global app
     app = Flask(__name__)
     app.config["PROPAGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "Tasks API"
