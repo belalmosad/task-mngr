@@ -67,3 +67,8 @@ class TaskItem(MethodView):
         db.session.commit()
     
     
+@bp.route('/tasks/count')
+class TaskCount(MethodView):
+    def get(self):
+        res = db.session.query(TaskModel).count()
+        return {'count': res}
