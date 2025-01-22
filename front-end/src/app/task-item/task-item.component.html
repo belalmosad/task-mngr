@@ -2,7 +2,12 @@
   <mat-card-header>
     <div class="task-head">
       <mat-card-title>Task No. {{taskItem.id}}</mat-card-title>
-      <mat-icon aria-hidden="false" aria-label="Delete Task" fontIcon="delete" (click)="deleteTask(taskItem.id)"></mat-icon>
+      <div class="icons">
+        <mat-icon aria-hidden="false" aria-label="Delete Task" fontIcon="delete"
+          (click)="deleteTask(taskItem.id)" class="delete-icon"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Update Icon" fontIcon="edit" class="edit-icon" (click)="updateTask(taskItem)"></mat-icon>
+      </div>
+
     </div>
   </mat-card-header>
   <mat-card-content>

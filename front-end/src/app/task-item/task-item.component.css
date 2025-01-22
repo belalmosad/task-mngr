@@ -26,10 +26,14 @@
     width: 100%;
 }
 
-.task-head mat-icon {
+.task-head .delete-icon {
     color: #bb2124;
 }
 
 .task-head mat-icon:hover {
     cursor: pointer;
+}
+
+.task-head .edit-icon {
+    color: grey;
 }
