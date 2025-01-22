@@ -1,1 +1,26 @@
-<p>edit-task works!</p>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm)" class="task-form">
+    <h3>Update task No.</h3>
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Task Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter task name" />
+      <mat-error *ngIf="taskForm.get('name')?.hasError('required')">
+        Task name is required
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statuses" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="taskForm.get('status')?.hasError('required')">
+        Status is required
+      </mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid" class="field">
+      Submit
+    </button>
+</form>
