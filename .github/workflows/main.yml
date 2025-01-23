@@ -41,4 +41,4 @@ jobs:
           context: ./back-end
           file: ./back-end/Dockerfile 
           push: true
-          tags: tasks-api:latest
+          tags: belalelmeligy/tasks-api:latest
