@@ -26,8 +26,3 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
         poetry install
-    
-    - name: Run poetry shell
-      working-directory: ./back-end
-      run: |
-        poetry shell
